@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<% if @authors.empty? %>
+  <div class="container">
+    <div> No Author Create One</div>
+    <div> 
+        <button type="button" class="btn btn-info " data-toggle="modal" data-target="#modalAddAuthor">
+          Add Author
+        </button>
+    </div>
+  </div>
+<% else %>
+  <h1>Authors</h1>
+
+  <table class="table table-hover "> 
+    <thead>
+      <tr>
+        <th>First name</th>
+        <th >Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+        </td>
+          <% @authors.each do |author| %>
+            <tr>
+              <td><%= author.full_name %></td>
+              <td>
+                <%= link_to 'Add Book', books_path(author: author), class: "btn btn-success btn-sm"  %>
+              </td>
+            </tr>
+          <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+<br>
+
+  
+  <% if !@authors.empty? %>
+    <button type="button" class="btn btn-info " data-toggle="modal" data-target="#modalAddAuthor">
+      Add Author
+    </button>
+  <% end %>
+  
+
+
+<%= render 'add_author_modal', author: @author %>
+
+
+

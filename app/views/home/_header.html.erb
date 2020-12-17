@@ -1,0 +1,28 @@
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="row">
+
+      <h2 class="text-white mr-5">
+        <%= link_to 'Book List Web App', root_path, class: "text-white", method: "get" %>
+      </h2>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+
+    <% if !current_user.nil? %>
+      <div class="collapse navbar-collapse sticky-top" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item <%if current_page?('/')%>active<%end%>">
+            <%= link_to 'Home', root_path, class: "nav-link", method: "get" %>
+          </li>
+          <li class="nav-item <%if current_page?(controller: 'authors')%>active<%end%> ">
+            <%= link_to 'Author', authors_path, class: "nav-link", method: "get" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Logout', destroy_user_session_path, class: "nav-link", method: "delete" %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+
+  </nav>

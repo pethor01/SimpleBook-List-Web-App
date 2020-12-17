@@ -1,0 +1,61 @@
+<%= stylesheet_link_tag 'books', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="container mt-3" data-controller="book">
+    <h1>List of Books</h1>
+
+    <div class="container row mt-4">
+        <div class="row col-8 ">
+            <h3>Author: </h3>
+            <h3 class="ml-2"><%= @author.full_name %></h3>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <% if @find_books_by_author.empty? %>
+            <div class="row container mt-5">
+                <div class="col-2"> No Book Create One</div>
+                <div class="col-6"> 
+                    <button type="button" class="btn btn-success " data-toggle="modal" data-target="#book_modal">
+                        Add Book
+                    </button>
+                </div>
+            </div>
+
+        <%else%>
+            <% @find_books_by_author.each do  |book| %>
+                    <div class="col-sm-4 mt-3">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <p class="card-text text-right">
+                                    <% if !book.status.nil? && book.status == "Draft" %>
+                                        <span class="badge badge-pill badge-default"><%= book.status %></span>
+                                        <% elsif !book.status.nil? && book.status == "In Progress" %>
+                                            <span class="badge badge-pill badge-primary"><%= book.status %></span>
+                                        <% elsif !book.status.nil? && book.status == "Published" %>
+                                            <span class="badge badge-pill badge-success"><%= book.status %></span>
+                                    <% end %>
+                                </p>
+                                <h5 class="card-title"><%= book.name %></h5>
+                                <p class="card-text"><%= book.description %></p>
+                                <cite title=" Source Title" class="blockquote-footer mb-3"> <%= book.created_at.strftime("%B %d, %Y")%></cite>
+                            </div>
+                        </div>
+                    </div>
+            <% end %>
+        <% end %>
+    </div>
+
+
+
+
+</div>
+
+
+  <% if !@find_books_by_author.empty? %>
+    <button type="button" class="btn btn-success mt-5" data-toggle="modal" data-target="#book_modal">
+      Add Book
+    </button>
+  <% end %>
+
+<%= render 'book_modal' %>

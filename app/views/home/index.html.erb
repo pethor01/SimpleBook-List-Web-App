@@ -1,0 +1,47 @@
+<%= stylesheet_link_tag 'books', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+<div class="container mt-3" data-controller="book">
+    <h1>Books</h1>
+
+    <div class="row">
+      <% if @all_books.empty? %>
+        <div class="row container mt-5">
+          <div class="col-2"> No Books Create One</div>
+          <div class="col-6"> 
+              <%= link_to 'Author', authors_path, class: "btn btn-info ", method: "get" %>
+          </div>
+        </div>
+
+      <%else%>
+        <% @all_books.each do  |book| %>
+          <div class="col-sm-4 mt-3">
+            <div class="card mt-3">
+              <div class="card-body">
+                <p class="card-text text-right">
+                  <% if !book.status.nil? && book.status == "Draft" %>
+                    <span class="badge badge-pill badge-default"><%= book.status %></span>
+                    <% elsif !book.status.nil? && book.status == "In Progress" %>
+                        <span class="badge badge-pill badge-primary"><%= book.status %></span>
+                    <% elsif !book.status.nil? && book.status == "Published" %>
+                        <span class="badge badge-pill badge-success"><%= book.status %></span>
+                  <% end %>
+                </p>
+                <h5 class="card-title"><%= book.name %></h5>
+                <p class="card-text"><%= book.description %></p>
+                <cite title=" Source Title" class=" mb-3">Author: <%= book.author.full_name %></cite>
+                <cite title=" Source Title" class="blockquote-footer mt-2 mb-3"> <%= book.created_at.strftime("%B %d, %Y, at %I:%M %p")%></cite>
+                <%= link_to 'View Book', view_book_path(book: book), class: "btn btn-info btn-sm"  %>
+
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+
+
+</div>
+
+
+

@@ -1,0 +1,6 @@
+  <%= form_with model: @comment , data: { action: "submit->comment#create_comment"} do |form| %>
+    <%= form.hidden_field :user_id , class: "form-control", value: current_user.id %>
+    <%= form.hidden_field :book_id , class: "form-control", value: @book.id %>
+    <%= form.text_field :comment , class: "form-control", required: true, placeholder: "Add Comment", data: { action: "keypress->comment#onchange"}%>
+    <button id="btn-comment" type="submit" style="visibility: hidden;" class="btn btn-sm btn-primary mt-2">Comment</button>
+  <%end%>

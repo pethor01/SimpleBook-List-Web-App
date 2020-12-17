@@ -1,0 +1,56 @@
+
+<!-- Modal: modalAbandonedCart-->
+<div class="modal fade right" id="book_modal"  tabindex="-1"  role="dialog"  aria-hidden="true" data-backdrop="false" >
+  <div class="modal-dialog modal-side  modal-top-right modal-notify modal-success" role="document" data-controller="book">
+    <!--Content-->
+    <%= form_with model: @book , data: { action: "submit->book#create_book"} do |form| %>
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header" data-controller="book">
+                <p class="heading">Add Book</p>
+                <button type="button" class="close" data-dismiss="modal"        
+                    data-action="click->book#reset" aria-label="Close" 
+                >
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="row">
+                    <%= form.hidden_field :author_id , class: "form-control", required: true, value: @author.id %>
+                     <div class="col-12 mt-3">
+                        <%= form.label :name %>
+                        <%= form.text_field :name , class: "form-control", required: true%>
+                    </div>
+
+                    <div class="col-12 mt-3">
+
+                        <%= form.label :status %>
+                        <%= form.select :status, ["Draft", "In Progress", "Published"], {}, {class: "form-control dropdown-toggle"} %>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <%= form.label :description %>
+                        <%= form.text_area :description, class: "form-control", required: true, rows: "3"  %>
+                    </div>
+        
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center" data-controller="book">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="button" class="btn btn-outline-success waves-effect" 
+                    data-action="click->book#reset" data-dismiss="modal" 
+                >
+                    Cancel
+                </button>
+            </div>
+        </div>
+    <% end %>
+
+    <!--/.Content-->
+  </div>
+</div>
+

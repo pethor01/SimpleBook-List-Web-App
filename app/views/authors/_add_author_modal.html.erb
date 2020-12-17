@@ -1,0 +1,51 @@
+
+<!-- Modal: modalAbandonedCart-->
+<div class="modal fade right" id="modalAddAuthor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-side modal-top-right modal-notify modal-info" role="document">
+    <!--Content-->
+    <%= form_with model: author , data: { reflex: "submit->author#create"} do |form| %>
+        <div class="modal-content">
+            <!--Header-->
+            <div class="modal-header" data-controller="author">
+                <p class="heading">Add Author</p>
+                <button type="button" class="close" data-dismiss="modal"        
+                    data-action="click->author#reset"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true" class="white-text">&times;</span>
+                </button>
+            </div>
+
+            <!--Body-->
+            <div class="modal-body">
+                <div class="row">
+                     <div class="col-12">
+                        <%= form.label :last_name %>
+                        <%= form.text_field :last_name , class: "form-control", required: true%>
+                    </div>
+
+                    <div class="col-12 mt-3">
+                        <%= form.label :first_name %>
+                        <%= form.text_field :first_name, class: "form-control", required: true  %>
+                    </div>
+        
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer justify-content-center" data-controller="author">
+                <button type="submit" class="btn btn-info">Save</button>
+                <button type="button" class="btn btn-outline-info waves-effect" 
+                    data-dismiss="modal" data-action="click->author#reset"
+                >
+                    Cancel
+                </button>
+            </div>
+        </div>
+    <% end %>
+
+    <!--/.Content-->
+  </div>
+</div>
+
