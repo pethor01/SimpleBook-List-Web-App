@@ -6,31 +6,31 @@
   
   <p class="h4 mb-4">Sign in</p>
 
-  <div class="row col-6">
-    <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: "Username" %>
-  </div>
+  <div class="row">
+    <div class="form-group col-md-6 col-md-4">
+      <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: "Username" %>
+    </div>
+    <div class=" col-6">
+    </div>
 
-  <div class="row mt-4">
-    <div class=" col-6 ">
+    <div class="form-group col-md-6 col-md-4">
       <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", class: "form-control", placeholder: "Last Name" %>
     </div>
 
-    <div class=" col-6 ">
-      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", placeholder: "Last Name" %>
+    <div class="form-group col-md-6 col-md-4">
+      <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", class: "form-control", placeholder: "First Name" %>
     </div>
-  </div>
+    <div class=" form-group col-md-6 col-md-4">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email " %>
+    </div>
+    <div class=" col-6">
+    </div>
 
-
-  <div class="row col-6 mt-4">
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email " %>
-  </div>
-
-  <div class="row mt-4">
-    <div class="col-6">
+    <div class="form-group col-md-6 col-md-4">
       <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Password #{@minimum_password_length} characters minimum" %>
     </div>
 
-    <div class="col-6">
+    <div class=" form-group col-md-6 col-md-4">
       <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Password Confirmation" %>
     </div>
   </div>  
